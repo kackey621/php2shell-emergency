@@ -422,3 +422,58 @@ sup a { color: var(--muted); text-decoration: none; }
   .section { padding: 60px 0; }
   .btn-lg, .btn-xl { width: 100%; }
 }
+
+/* ---- PHP Version Checker ---- */
+[hidden] { display: none !important; }
+code { font-family: "SFMono-Regular", Menlo, Consolas, monospace; background: var(--tint); border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; font-size: .92em; }
+.hero-checker { padding: 56px 0 64px; }
+.hero-checker h1 { font-size: clamp(32px, 5vw, 52px); margin-bottom: 12px; }
+.checker-form { margin-top: 28px; }
+.checker-label { display: block; font-weight: 800; margin-bottom: 8px; }
+.checker-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.checker-input {
+  flex: 1 1 260px; min-width: 0; font: inherit; font-size: 17px; padding: 14px 16px;
+  border-radius: 12px; border: 2px solid rgba(255, 255, 255, .25); background: #fff; color: var(--ink);
+}
+.checker-input:focus { outline: 3px solid var(--amber); outline-offset: 1px; }
+.checker-btn { border: 0; font: inherit; font-weight: 800; font-size: 17px; cursor: pointer; padding: 14px 28px; }
+.checker-btn:disabled { opacity: .6; cursor: progress; transform: none; }
+.checker-hint { font-size: 13px; color: #B8C0D6; margin-top: 10px; }
+.checker-form-light .checker-input { border-color: var(--line); }
+.checker-form-light { margin: 0 0 24px; }
+.howto-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 24px; }
+.section-result { padding: 48px 0; }
+.result-card { border-radius: 18px; padding: 28px; border: 3px solid var(--line); background: #fff; box-shadow: var(--shadow); display: grid; gap: 10px; }
+.result-badge { justify-self: start; font-weight: 900; font-size: 15px; padding: 4px 14px; border-radius: 999px; background: var(--line); color: var(--ink); }
+.result-title { font-size: clamp(21px, 3vw, 28px); }
+.result-version { font-family: "SFMono-Regular", Menlo, Consolas, monospace; font-weight: 700; color: var(--muted); }
+.result-version:empty { display: none; }
+.result-detail { font-size: 16px; }
+.result-notes { display: grid; gap: 6px; }
+.result-notes li { position: relative; padding-left: 20px; font-size: 14px; color: var(--muted); }
+.result-notes li::before { content: "※"; position: absolute; left: 0; }
+.result-raw { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; margin: 6px 0 0; font-size: 13px; background: var(--tint); border-radius: 10px; padding: 12px 14px; }
+.result-raw dt { font-weight: 800; color: var(--muted); }
+.result-raw dd { margin: 0; font-family: "SFMono-Regular", Menlo, Consolas, monospace; overflow-wrap: anywhere; }
+.result-cta { margin-top: 8px; }
+.is-danger { border-color: var(--red); background: var(--red-soft); }
+.is-danger .result-badge { background: var(--red); color: #fff; }
+.is-danger .result-title { color: var(--red-dark); }
+.is-warn { border-color: var(--amber); background: var(--amber-soft); }
+.is-warn .result-badge { background: var(--amber); color: #111; }
+.is-safe { border-color: var(--green); background: var(--green-soft); }
+.is-safe .result-badge { background: var(--green); color: #fff; }
+.is-safe .result-title { color: var(--green); }
+.caveats { display: grid; gap: 8px; margin-top: 24px; }
+.caveats li { position: relative; padding-left: 22px; font-size: 15px; color: var(--muted); }
+.caveats li::before { content: "!"; position: absolute; left: 0; top: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--amber); color: #111; font-size: 11px; font-weight: 900; display: grid; place-items: center; }
+
+/* LP内のチェッカー案内 */
+.checker-banner {
+  display: grid; gap: 16px; align-items: center; margin: 28px 0 8px; padding: 24px 28px; border-radius: 18px;
+  background: linear-gradient(135deg, var(--navy), var(--navy-2)); color: #fff;
+}
+@media (min-width: 760px) { .checker-banner { grid-template-columns: 1fr auto; } }
+.checker-banner h3 { font-size: 21px; margin-bottom: 4px; }
+.checker-banner p { color: #D3D8E6; font-size: 15px; }
+.section-result { scroll-margin-top: 72px; }

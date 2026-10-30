@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src https://php-api.skslprd.com; object-src 'none'; frame-src 'none'; font-src 'none'; media-src 'none'; manifest-src 'none'; worker-src 'none'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'; trusted-types 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=no">
+<title>PHP Version Checker｜PHP2Shell（CVE-2026-109618／CVE-2026-109619）の影響を確認</title>
+<meta name="description" content="サイトのURLを入力するだけで、PHPのバージョンを検出し、PHP2Shell（CVE-2026-109618、CVE-2026-109619）の修正済みバージョンかどうかを判定します。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHP Version Checker｜PHP2Shellの影響を確認">
+<meta property="og:description" content="URLを入力するだけで、PHPのバージョンを検出して修正済みかどうかを判定します。">
+<meta property="og:url" content="https://php.skslprd.com/checker.html">
+<meta property="og:image" content="https://php.skslprd.com/assets/ogp.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<script src="checker.js" defer></script>
+</head>
+<body>
+
+<div class="stripe" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo" href="./"><span class="logo-mark" aria-hidden="true">!</span>PHP緊急対応プラン</a>
+    <a class="btn btn-sm btn-red" href="https://timerex.net/s/a.kusama_002f/bc2dfae4" target="_blank" rel="noopener noreferrer">事前面談を予約</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero hero-checker">
+    <div class="wrap wrap-narrow">
+      <p class="cve-row">
+        <span class="cve">CVE-2026-109618</span>
+        <span class="cve">CVE-2026-109619</span>
+      </p>
+      <h1>PHP Version Checker</h1>
+      <p class="hero-lead">サイトのURLを入れるだけで、PHPのバージョンを調べ、PHP2Shellの修正が済んでいるかを判定します。</p>
+
+      <form class="checker-form" id="url-form" novalidate>
+        <label class="checker-label" for="url-input">確認したいサイトのURL</label>
+        <div class="checker-row">
+          <input class="checker-input" id="url-input" name="url" type="url" inputmode="url" autocomplete="url" spellcheck="false" maxlength="2048" placeholder="https://example.co.jp" required>
+          <button class="btn btn-red checker-btn" id="url-submit" type="submit">チェックする</button>
+        </div>
+        <p class="checker-hint">サイトが訪問者に送っている公開情報（応答ヘッダー）だけを確認します。ページの中身は読み込みません。</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="section section-result" id="result" aria-live="polite" hidden>
+    <div class="wrap wrap-narrow">
+      <div class="result-card" id="result-card">
+        <p class="result-badge" id="result-badge"></p>
+        <h2 class="result-title" id="result-title"></h2>
+        <p class="result-version" id="result-version"></p>
+        <p class="result-detail" id="result-detail"></p>
+        <ul class="result-notes" id="result-notes"></ul>
+        <dl class="result-raw" id="result-raw" hidden>
+          <dt>X-Powered-By</dt><dd id="raw-powered"></dd>
+          <dt>Server</dt><dd id="raw-server"></dd>
+        </dl>
+        <div class="result-cta" id="result-cta" hidden>
+          <a class="btn btn-lg btn-red" href="https://timerex.net/s/a.kusama_002f/bc2dfae4" target="_blank" rel="noopener noreferrer">事前面談を予約する<small>15〜30分・Google Meet</small></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tint" id="manual">
+    <div class="wrap wrap-narrow">
+      <p class="eyebrow">URLで検出できなかったときは</p>
+      <h2>バージョン番号を入力して判定</h2>
+      <p class="section-lead">多くのサーバーは、安全のためにバージョンを外部に表示しない設定になっています。その場合は管理画面で番号を確認し、ここに入力してください。</p>
+      <form class="checker-form checker-form-light" id="manual-form" novalidate>
+        <label class="checker-label" for="manual-input">PHPのバージョン</label>
+        <div class="checker-row">
+          <input class="checker-input" id="manual-input" name="version" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" maxlength="64" placeholder="例: 8.3.36" required>
+          <button class="btn btn-red checker-btn" type="submit">判定する</button>
+        </div>
+      </form>
+      <dl class="howto howto-card">
+        <dt>WordPress</dt><dd>管理画面の「ツール」→「サイトヘルス」→「情報」タブ →「サーバー」</dd>
+        <dt>EC-CUBE 4</dt><dd>管理画面の「設定」→「システム設定」→「システム情報」</dd>
+        <dt>サーバーに入れる方</dt><dd>コマンド <code>php -v</code> の結果</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap wrap-narrow">
+      <h2>判定の基準</h2>
+      <table class="vtable">
+        <thead><tr><th scope="col">系統</th><th scope="col">この番号以上なら修正済み</th></tr></thead>
+        <tbody>
+          <tr><td>8.5</td><td>8.5.12</td></tr>
+          <tr><td>8.4</td><td>8.4.27</td></tr>
+          <tr><td>8.3</td><td>8.3.36</td></tr>
+          <tr><td>8.2</td><td>8.2.35</td></tr>
+          <tr class="bad"><td>5.4〜8.1</td><td>公式の修正版なし。バージョンアップが必要</td></tr>
+        </tbody>
+      </table>
+      <ul class="caveats">
+        <li>この判定は、PHPのバージョン番号だけを見ています。「修正済み」でも、すでに改ざんや侵入が起きていないことまでは保証できません。</li>
+        <li>Ubuntu・Debianなどのパッケージでは、番号を変えずに修正されている場合があります。番号の後ろに「-0ubuntu」「~deb」などが付く場合は、パッケージの更新状況をご確認ください。</li>
+        <li>URLで「検出できない」ことは「安全」という意味ではありません。</li>
+        <li>入力したURLは判定のためだけに使い、保存しません。ご自身が管理するサイトの確認にご利用ください。</li>
+      </ul>
+      <p class="fine">基準の出典：<a href="https://www.ipa.go.jp/security/security-alert/index.html" target="_blank" rel="noopener noreferrer">IPA「重要なセキュリティ情報」</a>、<a href="https://cloud.google.com/blog/products/identity-security/responding-to-core-php-vulnerabilities-cve-2026-109618-cve-2026-109619" target="_blank" rel="noopener noreferrer">Google Cloud</a>（2026年10月30日時点）</p>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap final-inner">
+      <p class="final-kicker">判定結果が「危険」「要確認」だったら</p>
+      <h2>すぐに、ご相談ください。</h2>
+      <p>VPS・クラウド・自社サーバーのPHPを、エンジニアが直接アップデートします。</p>
+      <a class="btn btn-xl btn-amber" href="./">緊急対応プランを見る</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="disclaimer">本ツールは、PHPの開発元やIPAなどの公的機関とは関係のない、個人のエンジニアによる参考情報です。判定結果は安全性を保証するものではありません。</p>
+    <p class="copy">© 2026 PHP緊急対応プラン</p>
+  </div>
+</footer>
+
+</body>
+</html>
