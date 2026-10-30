@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; script-src 'none'; object-src 'none'; frame-src 'none'; connect-src 'none'; font-src 'none'; media-src 'none'; manifest-src 'none'; worker-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=no">
+<title>PHP脆弱性 緊急対応プラン｜PHP2Shell（CVE-2026-109618／CVE-2026-109619）</title>
+<meta name="description" content="PHPの深刻な脆弱性「PHP2Shell」（CVE-2026-109618、CVE-2026-109619）への緊急対応プラン。VPS・クラウド・自社サーバーで動くWordPress、EC-CUBE、WooCommerceなどのPHPを、エンジニアが直接アップデートして早期復旧を支援します。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHP脆弱性 緊急対応プラン｜PHP2Shell">
+<meta property="og:description" content="VPS・クラウド・自社サーバーで動くWordPress／EC-CUBE／WooCommerceのPHPを、エンジニアが直接アップデート。賠償責任保険加入済み。">
+<meta property="og:url" content="https://kackey621.github.io/php2shell-emergency/">
+<meta property="og:image" content="https://kackey621.github.io/php2shell-emergency/assets/ogp.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="stripe" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo" href="#top"><span class="logo-mark" aria-hidden="true">!</span>PHP緊急対応プラン</a>
+    <a class="btn btn-sm btn-red" href="https://timerex.net/s/a.kusama_002f/bc2dfae4" target="_blank" rel="noopener noreferrer">事前面談を予約</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ヒーロー -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="hero-badges">
+          <span class="tag tag-red">緊急対応</span>
+          <span class="tag tag-outline">2026年12月末まで受付</span>
+        </p>
+        <p class="cve-row">
+          <span class="cve">CVE-2026-109618</span>
+          <span class="cve">CVE-2026-109619</span>
+          <span class="cve-alias">通称 PHP2Shell</span>
+        </p>
+        <h1><span class="nb"><span class="php">PHP</span>の深刻な欠陥で、</span><span class="nb">あなたのサイトが</span><span class="nb"><em>外から乗っ取られる</em>おそれ。</span></h1>
+        <p class="hero-lead">VPS・クラウド・自社サーバーで動くWordPress・EC-CUBE・WooCommerceなど。<br class="pc">レンタルサーバー任せにできない環境のPHPを、エンジニアが直接アップデートして早期復旧を支援します。</p>
+        <div class="hero-cta">
+          <a class="btn btn-lg btn-red" href="https://timerex.net/s/a.kusama_002f/bc2dfae4" target="_blank" rel="noopener noreferrer">事前面談を予約する<small>15〜30分・ココナラ通話</small></a>
+          <a class="btn btn-lg btn-ghost" href="#check">対象かどうか確認する</a>
+        </div>
+        <p class="hero-note">面談で「対応不要」と判断した場合、代金はいただきません。</p>
+      </div>
+
+      <aside class="alert-card" aria-label="脆弱性の概要">
+        <div class="alert-head">
+          <svg class="alert-icon" viewBox="0 0 64 56" aria-hidden="true"><path class="tri" d="M32 4 61 52H3Z"/><path class="bang" d="M29 20h6l-1 17h-4zM29 41h6v6h-6z"/></svg>
+          <p>深刻度<strong>9.2</strong><span>/10（CVSS v4.0・Critical）</span></p>
+        </div>
+        <dl class="alert-list">
+          <div><dt>何が起きる？</dt><dd>ログイン不要で、外部からサーバー上のプログラムを勝手に動かされる（リモートコード実行）</dd></div>
+          <div><dt>影響するPHP</dt><dd>PHP 5.4 以降の幅広いバージョン</dd></div>
+          <div><dt>公的機関の動き</dt><dd>IPA（情報処理推進機構）が2026年10月22日に注意喚起</dd></div>
+          <div><dt>報道</dt><dd>企業や自治体でもサイトの一時停止が相次ぐ</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 数字 -->
+  <section class="stats" aria-label="数字で見る状況">
+    <div class="wrap stats-grid">
+      <div class="stat"><p class="stat-num">約<b>7</b>割</p><p class="stat-label">サーバー側の言語が判明しているWebサイトのうち、PHPを使っている割合<sup><a href="#src-w3techs">※1</a></sup></p></div>
+      <div class="stat"><p class="stat-num"><b>9.2</b></p><p class="stat-label">深刻度（CVSS v4.0）。10段階の最上位「Critical」に分類<sup><a href="#src-ipa">※2</a></sup></p></div>
+      <div class="stat"><p class="stat-num"><b>0</b>回</p><p class="stat-label">攻撃に必要なログインの回数。IDやパスワードを知らなくても狙われます<sup><a href="#src-ipa">※2</a></sup></p></div>
+    </div>
+  </section>
+
+  <!-- PHPとは -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <p class="eyebrow">まずはここから</p>
+      <h2>そもそも「PHP」ってなに？</h2>
+      <p class="section-lead">難しい言葉は使いません。Webサイトを「お店」にたとえると、こうなります。</p>
+      <div class="explain-grid">
+        <article class="explain">
+          <svg viewBox="0 0 120 90" aria-hidden="true"><rect class="s-line" x="14" y="30" width="92" height="52" rx="6"/><path class="s-amber" d="M8 30 20 10h80l12 20Z"/><rect class="s-fill" x="48" y="52" width="24" height="30" rx="3"/><rect class="s-fill2" x="22" y="44" width="18" height="14" rx="2"/><rect class="s-fill2" x="80" y="44" width="18" height="14" rx="2"/></svg>
+          <h3>Webサイト ＝ お店の売り場</h3>
+          <p>お客さまが目にする画面です。商品ページ、お知らせ、お問い合わせフォームなどが並びます。</p>
+        </article>
+        <article class="explain">
+          <svg viewBox="0 0 120 90" aria-hidden="true"><circle class="s-php" cx="60" cy="45" r="30"/><circle class="s-white" cx="60" cy="45" r="12"/><path class="s-php" d="M56 8h8v10h-8zM56 72h8v10h-8zM23 41h10v8H23zM87 41h10v8H87z"/></svg>
+          <h3>PHP ＝ 裏で働くエンジン</h3>
+          <p>注文の受付、会員ログイン、記事の表示などを裏側で処理する仕組みです。WordPressやEC-CUBEはPHPで動いています。</p>
+        </article>
+        <article class="explain explain-danger">
+          <svg viewBox="0 0 120 90" aria-hidden="true"><rect class="s-red" x="30" y="40" width="60" height="42" rx="6"/><path class="s-red-line" d="M42 40V28a18 18 0 0 1 34-8"/><circle class="s-white" cx="60" cy="58" r="6"/><path class="s-white" d="M57 60h6v12h-6z"/></svg>
+          <h3>脆弱性 ＝ 合鍵が出回った状態</h3>
+          <p>今回はエンジン（PHP）そのものに欠陥が見つかりました。外部の人が裏口から入り、お店を勝手に操作できてしまいます。</p>
+        </article>
+      </div>
+
+      <div class="risk-box">
+        <h3>放っておくと、こんなことが起こりえます</h3>
+        <ul class="risk-list">
+          <li><b>サイトの改ざん</b>見知らぬ広告や偽ページに書き換えられる</li>
+          <li><b>情報の流出</b>顧客情報・会員情報・注文情報が盗まれる</li>
+          <li><b>攻撃の踏み台</b>ウイルス配布や他社への攻撃に悪用される</li>
+          <li><b>サイトの停止</b>営業や予約、問い合わせが止まる</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- タイムライン -->
+  <section class="section section-tint">
+    <div class="wrap">
+      <p class="eyebrow">いま何が起きている？</p>
+      <h2>発表から数日で、世界中が対応に追われています</h2>
+      <ol class="timeline">
+        <li><time datetime="2026-10-21">2026年10月21日</time><p>PHPの開発元が修正版（8.5.12／8.4.27／8.3.36／8.2.35）を公開<sup><a href="#src-fix">※3</a></sup></p></li>
+        <li><time datetime="2026-10-22">2026年10月22日</time><p>IPA（情報処理推進機構）が注意喚起。最新版への更新を呼びかけ<sup><a href="#src-ipa">※2</a></sup></p></li>
+        <li><time datetime="2026-10">2026年10月下旬</time><p>海外のセキュリティ企業が、実際の攻撃を観測したと報告<sup><a href="#src-watchtowr">※4</a></sup></p></li>
+        <li class="now"><time>いま</time><p>企業や自治体でもサイトの一時停止が報道される中、<b>更新できていないサイトが狙われています</b></p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 対象チェック -->
+  <section class="section" id="check">
+    <div class="wrap">
+      <p class="eyebrow">30秒でわかる</p>
+      <h2>あなたのサイトは対象？</h2>
+      <div class="flow">
+        <div class="flow-q"><span class="flow-num">Q1</span>サイトはWordPress・EC-CUBE・WooCommerce、またはPHPで作られていますか？</div>
+        <div class="flow-branch">
+          <div class="flow-a flow-ok"><b>いいえ／わからない</b>PHPを使っていなければ、今回の影響はありません。わからない場合は面談でお調べします。</div>
+          <div class="flow-a flow-next"><b>はい</b>Q2へ</div>
+        </div>
+        <div class="flow-q"><span class="flow-num">Q2</span>サイトはどこで動いていますか？</div>
+        <div class="flow-branch">
+          <div class="flow-a flow-ok"><b>レンタルサーバー</b>事業者がPHPを更新している場合があります。まずは事業者のお知らせをご確認ください。</div>
+          <div class="flow-a flow-alert"><b>VPS・AWS・Azure・自社サーバーなど</b>PHPの更新は<em>運用者ご自身の責任</em>です。このプランの対象です。</div>
+        </div>
+      </div>
+
+      <div class="version-grid">
+        <div class="version-card">
+          <h3>PHPのバージョンを確かめる方法</h3>
+          <dl class="howto">
+            <dt>WordPress</dt><dd>管理画面の「ツール」→「サイトヘルス」→「情報」タブ →「サーバー」</dd>
+            <dt>EC-CUBE 4</dt><dd>管理画面の「設定」→「システム設定」→「システム情報」</dd>
+            <dt>その他</dt><dd>わからなくても大丈夫です。面談で一緒に確認します。</dd>
+          </dl>
+        </div>
+        <div class="version-card">
+          <h3>修正済みのバージョン</h3>
+          <table class="vtable">
+            <thead><tr><th scope="col">系統</th><th scope="col">この番号以上なら修正済み</th></tr></thead>
+            <tbody>
+              <tr><td>8.5</td><td>8.5.12</td></tr>
+              <tr><td>8.4</td><td>8.4.27</td></tr>
+              <tr><td>8.3</td><td>8.3.36</td></tr>
+              <tr><td>8.2</td><td>8.2.35</td></tr>
+              <tr class="bad"><td>8.1以前</td><td>公式の修正版なし。バージョンアップが必要</td></tr>
+            </tbody>
+          </table>
+          <p class="fine">※Linuxディストリビューションのパッケージでは、番号が変わらないまま修正されている場合があります。判断が難しいときはご相談ください。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- こんな状況 -->
+  <section class="section section-dark">
+    <div class="wrap">
+      <h2>こんな状況ではありませんか？</h2>
+      <ul class="worry-list">
+        <li>PHPの脆弱性情報が出たのに、社内に対応できる人がいない</li>
+        <li>サイトを作った会社と連絡が取れず、サーバーの中身がわからない</li>
+        <li>更新したいけれど、サイトが壊れないか不安で手が出せない</li>
+      </ul>
+      <p class="dark-lead">レンタルサーバーの一部では、PHPの更新やセキュリティパッチの適用を事業者が行ってくれます。しかし、<strong>VPS、AWS・Azureなどのクラウド、自社サーバーでは、その作業はすべて運用者の責任</strong>です。<br>本プランは、このように「管理者がいない」環境で起きた緊急事態に、すぐに対応して業務を立て直すためのサービスです。</p>
+    </div>
+  </section>
+
+  <!-- 対応内容 -->
+  <section class="section" id="service">
+    <div class="wrap">
+      <p class="eyebrow">対応内容</p>
+      <h2>5つのステップで、サイトを安全な状態へ</h2>
+      <ol class="steps">
+        <li><span class="step-num">1</span><div><h3>初動調査</h3><p>ログ・バージョン・改ざんファイルを確認し、影響範囲を特定します。</p></div></li>
+        <li><span class="step-num">2</span><div><h3>被害拡大の防止</h3><p>一時的なメンテナンス表示、不正アカウントやバックドアの除去、認証情報の変更をご案内します。</p></div></li>
+        <li><span class="step-num">3</span><div><h3>アップデートと互換性の修正</h3><p>PHP・CMS本体・プラグイン・モジュールを更新し、動かなくなったコードを修正します。</p></div></li>
+        <li><span class="step-num">4</span><div><h3>動作確認</h3><p>表示や操作画面など、業務に欠かせない流れを確認します。</p></div></li>
+        <li><span class="step-num">5</span><div><h3>報告と再発防止</h3><p>作業報告書を提出し、今後の保守方針をご提案します。ご希望の方には、同様の事態が起きたときの初期対応もレクチャーします。</p></div></li>
+      </ol>
+      <div class="env">
+        <p class="env-title">対応できる環境の例</p>
+        <ul class="chips">
+          <li>WordPress</li><li>WooCommerce</li><li>EC-CUBE</li><li>Moodle</li><li>Laravel製の独自システム</li><li>ほか</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- オプション -->
+  <section class="section section-tint" id="options">
+    <div class="wrap">
+      <p class="eyebrow">プラン限定オプション</p>
+      <h2>もう、PHPの脆弱性に振り回されない</h2>
+      <p class="section-lead">更新の少ないサイトなら、WordPressをやめてPHPを使わないページに移行するのも一つの方法です。PHPが動いていなければ、今回のようなPHPの脆弱性の影響を受けません。<br>緊急対応プランをご購入の方だけが追加できるオプションです。</p>
+      <div class="price-grid">
+        <article class="price-card">
+          <p class="price-type">単純サイト</p>
+          <h3>頻繁な更新をしないなら<br>WordPressから脱却！</h3>
+          <p class="price-sub">メンテナンスが楽なページへの移行</p>
+          <p class="price"><b>50,000</b>円</p>
+          <ul class="price-points"><li>サーバーの更新作業がほぼ不要に</li><li>表示が速く、壊れにくい</li></ul>
+        </article>
+        <article class="price-card price-featured">
+          <p class="price-ribbon">お知らせを続けたい方に</p>
+          <p class="price-type">単純サイト</p>
+          <h3>WordPressから脱却！<br>お知らせ更新は外部サービスで</h3>
+          <p class="price-sub">お知らせ更新だけを外部サービスに任せて、メンテナンスを楽に</p>
+          <p class="price"><b>100,000</b>円</p>
+          <ul class="price-points"><li>お知らせは引き続きご自身で更新</li><li>サイト本体はPHPなしで安全に</li></ul>
+        </article>
+        <article class="price-card">
+          <p class="price-type">複雑サイト</p>
+          <h3>頻繁な更新をしないなら<br>WordPressから脱却！</h3>
+          <p class="price-sub">ページ数や機能が多いサイトの、メンテナンスが楽なページへの移行</p>
+          <p class="price"><b>100,000</b>円</p>
+          <ul class="price-points"><li>ページ数・機能が多いサイトに対応</li><li>サーバーの更新作業がほぼ不要に</li></ul>
+        </article>
+      </div>
+      <p class="fine center">※「単純サイト」「複雑サイト」のどちらにあたるかは、事前面談で判断します。オプションは緊急対応プランとあわせてのご依頼に限ります。</p>
+    </div>
+  </section>
+
+  <!-- 事前面談 -->
+  <section class="section" id="interview">
+    <div class="wrap">
+      <div class="interview">
+        <div class="interview-head">
+          <p class="eyebrow">ご購入の前に</p>
+          <h2>事前面談が必要です</h2>
+          <p class="interview-time">15〜30分<span>ココナラの通話機能を使います（Zoomではありません）</span></p>
+        </div>
+        <div class="interview-body">
+          <p>まずは状況を把握いたします。システムについて、できる限り状況を理解されている方にご同席いただけるようご準備ください。</p>
+          <p class="interview-free">事前面談で「対応不要」と判断した場合には、代金は頂戴しません。</p>
+          <p>脆弱性への対応を、緊急で多くの方にお届けしたいと考えて提供しているプランです。そのため、面談の際に緊急性を判断し、お断りする場合がございます。あらかじめご了承ください。</p>
+          <a class="btn btn-lg btn-red" href="https://timerex.net/s/a.kusama_002f/bc2dfae4" target="_blank" rel="noopener noreferrer">面談日程を予約する<small>日程調整ページ（TimeRex）が開きます</small></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 対応者 -->
+  <section class="section section-tint" id="profile">
+    <div class="wrap">
+      <p class="eyebrow">対応者について</p>
+      <h2>現役エンジニアが、直接対応します</h2>
+      <div class="profile-grid">
+        <div class="profile-main">
+          <ul class="profile-list">
+            <li>フリーランスエンジニアとして、EC-CUBE・Magento・PrestaShop・WooCommerceのECサイト導入や、WordPress・Drupal・Moodleの導入と運用を支援してきました。</li>
+            <li>オンプレミスからクラウドへの移行、SSOの導入、社内システムの構築など、サーバー基盤まで含めて対応した経験があります。</li>
+            <li>現在もWebサービス企業のフルスタックエンジニアとして、性能改善や機能開発に携わっています。</li>
+            <li>早稲田大学 基幹理工学部 情報理工学科を卒業。現在は社会人大学院生として研究を続けています。</li>
+            <li>教育の現場で活動してきた経験を活かし、専門用語をかみ砕いて「何が起きていて、何をしたのか」をご説明します。</li>
+          </ul>
+          <div class="profile-facts">
+            <div><p class="fact-label">対応時間</p><p class="fact-value">土日を含め、日中から夜間（深夜1時）まで</p></div>
+            <div><p class="fact-label">資格</p><p class="fact-value">基本情報技術者／AWS認定ソリューションアーキテクト – アソシエイト</p></div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <p class="skill-title">経験年数</p>
+          <ul class="skills">
+            <li><span>WordPress</span><span class="bar bar-10"></span><b>10年</b></li>
+            <li><span>EC-CUBE</span><span class="bar bar-10"></span><b>10年</b></li>
+            <li><span>Azure</span><span class="bar bar-10"></span><b>10年</b></li>
+            <li><span>PHP</span><span class="bar bar-5"></span><b>5年</b></li>
+            <li><span>Laravel</span><span class="bar bar-5"></span><b>5年</b></li>
+            <li><span>Linux</span><span class="bar bar-5"></span><b>5年</b></li>
+            <li><span>AWS</span><span class="bar bar-5"></span><b>5年</b></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 保険 -->
+  <section class="section" id="insurance">
+    <div class="wrap">
+      <div class="insurance">
+        <div class="insurance-head">
+          <svg class="shield" viewBox="0 0 64 72" aria-hidden="true"><path class="sh" d="M32 3 59 13v20c0 18-12 30-27 36C17 63 5 51 5 33V13Z"/><path class="ck" d="m20 36 9 9 16-18"/></svg>
+          <div>
+            <p class="eyebrow">万が一に備えて</p>
+            <h2>賠償責任保険に加入しています</h2>
+          </div>
+        </div>
+        <p>フリーランス協会の賠償責任保険（大手損害保険会社2社による共同保険）に加入しています。<strong>納品物の瑕疵</strong>や<strong>情報漏えい</strong>といった、業務上のミスによる損害賠償も補償の対象です。</p>
+        <div class="cover-grid">
+          <div class="cover cover-yes">
+            <h3>補償の対象</h3>
+            <p>当方が施工した箇所に起因する損害に限ります。</p>
+          </div>
+          <div class="cover cover-no">
+            <h3>対象外</h3>
+            <ul>
+              <li>施工前から存在した不具合・改ざん・情報漏えい</li>
+              <li>施工範囲外のテーマ・プラグイン・サーバー設定</li>
+              <li>施工後にご依頼者さまや第三者が加えた変更</li>
+              <li>未公開の脆弱性（ゼロデイ）など、当方の作業に起因しない事象</li>
+            </ul>
+          </div>
+        </div>
+        <p class="fine">補償額は保険の支払限度額の範囲内で、支払いの可否は保険会社の審査によって決まります。詳しくは<a href="https://www.freelance-jp.org/pdf/aramashi.pdf" target="_blank" rel="noopener noreferrer">フリーランス協会 賠償責任保険のあらまし（PDF）</a>をご覧ください。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 流れ -->
+  <section class="section section-tint" id="flow">
+    <div class="wrap">
+      <p class="eyebrow">ご依頼の流れ</p>
+      <h2>ご相談から完了まで</h2>
+      <ol class="flow-steps">
+        <li><span>01</span><h3>面談のご予約</h3><p>状況・サイトURL・サーバーの種類をお知らせください。</p></li>
+        <li><span>02</span><h3>ヒアリングとお見積り</h3><p>必要に応じて秘密保持契約（NDA）を結びます。</p></li>
+        <li><span>03</span><h3>施工範囲の合意</h3><p>作業箇所を書面で確定します。</p></li>
+        <li><span>04</span><h3>バックアップと作業</h3><p>作業前の状態をいつでも戻せるようにしてから着手します。</p></li>
+        <li><span>05</span><h3>動作確認と報告</h3><p>報告書をお渡しして完了です。</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="wrap wrap-narrow">
+      <p class="eyebrow">よくある質問</p>
+      <h2>ご注文の前に</h2>
+      <div class="faq">
+        <details>
+          <summary>いつ頃まで注文できますか？</summary>
+          <div class="faq-a">
+            <p>2026年12月末までを予定しています。</p>
+            <p>PHPにおける複数の脆弱性（CVE-2026-109618、CVE-2026-109619）に基づく緊急対応プランです。多くのサイトを復旧させるための価格設定としています。責任を持って対応するために有償としつつ、安価で提供することでサイトの復旧に貢献したいと考えております。</p>
+            <p>なお、新たな脅威・脆弱性の勧告によっては、期限を延長する可能性があります。</p>
+          </div>
+        </details>
+        <details>
+          <summary>どのようなサイトが対象ですか？</summary>
+          <div class="faq-a">
+            <p>地方自治体・行政・団体をはじめとする公的機関から、民間企業・中小企業のサイト・サービスまでを対象としています。</p>
+            <p>ただし、違法性のあるサイト、技術上対応が困難と判断したサイト、閲覧者が攻撃などを受けかねないプログラムを設置しているサイトは、一律にお断りします。</p>
+            <p>また、既存サイト自体がサポートしていないバージョンである場合や、脆弱性が数多くPHPのバージョンアップでは対応できない場合には、最小限の対応をご提案するか、契約中でも中止させていただく場合がございます。その場合には、満額の報酬を受領させていただくか、現状に復帰したうえで代金の請求を停止させていただく対応となります。</p>
+          </div>
+        </details>
+        <details>
+          <summary>対応してくれる内容は何ですか？</summary>
+          <div class="faq-a">
+            <p>今回問題となっているのは、PHPのバージョンにおける脆弱性です。PHPのバージョンを、脆弱性のないバージョンに引き上げます。</p>
+            <p>ご希望の方には、今後同様の事態や攻撃が疑われる状況が生じた際に、システム運用者が行える初期対応をレクチャーします。</p>
+            <p>また、無償提供の範囲で可能な対応であれば、既存システムに存在する、攻撃される可能性のある箇所を塞ぎます。ただし、攻撃を防ぐことを確約・保証するものではありません。</p>
+          </div>
+        </details>
+        <details>
+          <summary>対応の目安はどの程度になりますか？</summary>
+          <div class="faq-a">
+            <p>通常の会社員業務と並行して受注いたしますので、お時間を要します。それでも、できる限り早い対応を心がけております。</p>
+            <p>週末などであれば最短即日、平日などであれば数日から1週間程度を目安としていただくことをおすすめします。</p>
+            <p>受注状況やサイトの内容によっては、さらにお時間をいただく場合もありますので、ご了承ください。</p>
+          </div>
+        </details>
+        <details>
+          <summary>サイトに存在する他の脆弱性にも対応してくれますか？</summary>
+          <div class="faq-a">
+            <p>恐れ入りますが、2026年10月以降にIPA（独立行政法人情報処理推進機構）が「重要なセキュリティ情報」として発表している内容以外には対応いたしません。重複した対応が必要な場合には、他のプランや他のベンダーをご紹介させていただきます。</p>
+          </div>
+        </details>
+        <details>
+          <summary>請求書や領収書を作成してもらえますか？</summary>
+          <div class="faq-a">
+            <p>ココナラ経由でご注文いただいた場合には、受領する報酬に限り発行いたします。</p>
+            <p>ただし、インボイス制度には対応していませんので、ご注意ください。</p>
+          </div>
+        </details>
+        <details>
+          <summary>発注前のビデオ面談はどの程度ですか？必ず行わなければいけませんか？</summary>
+          <div class="faq-a">
+            <p>15分から30分程度を予定しています。方法はZoomではなく、ココナラ上の通話機能です。面談は、対応の可否を判断するために原則必須としています。</p>
+            <p>ただし、対応不可となった場合にもその決定に了承いただき、報酬を返還しないことにも了承いただく特約を付けることを条件に、面談なしでの対応もお引き受けいたします。なお、特別な事情がない限りはおすすめいたしません。原則として、ビデオ通話へご案内いたします。</p>
+          </div>
+        </details>
+        <details>
+          <summary>対応に着手するまで、どのくらい時間がかかりますか？</summary>
+          <div class="faq-a">
+            <p>最短即日（数時間）で着手できる場合があります。一方で、面談の日程調整にお時間を要する場合には、数日から1週間ほどかかる可能性があります。スケジュールに余裕を持ってご相談ください。</p>
+          </div>
+        </details>
+        <details>
+          <summary>保証の範囲について教えてください。</summary>
+          <div class="faq-a">
+            <p>原則として、バージョンアップに伴う作業で生じた対応箇所のみです。また、保証される条件についても厳格な規定がございます。</p>
+            <p>詳しくは<a href="https://www.freelance-jp.org/pdf/aramashi.pdf" target="_blank" rel="noopener noreferrer">フリーランス協会 賠償責任保険のあらまし（PDF）</a>をご参照ください。</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 最後のCTA -->
+  <section class="final">
+    <div class="wrap final-inner">
+      <p class="final-kicker">「今まさにサイトが止まっている」「改ざんされているかもしれない」</p>
+      <h2>その段階で、ご相談ください。</h2>
+      <p>原因がわからなくても大丈夫です。まずは現状の確認から一緒に始めます。</p>
+      <a class="btn btn-xl btn-amber" href="https://timerex.net/s/a.kusama_002f/bc2dfae4" target="_blank" rel="noopener noreferrer">事前面談を予約する<small>受付は2026年12月末まで（予定）</small></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <h2 class="src-title">情報源</h2>
+    <ol class="sources">
+      <li id="src-w3techs">※1 <a href="https://w3techs.com/technologies/details/pl-php" target="_blank" rel="noopener noreferrer">W3Techs「Usage statistics of PHP」</a>（2026年8月時点で約70%）</li>
+      <li id="src-ipa">※2 <a href="https://www.ipa.go.jp/security/security-alert/index.html" target="_blank" rel="noopener noreferrer">IPA「重要なセキュリティ情報」</a>（PHPの脆弱性対策について：CVE-2026-109618、CVE-2026-109619）</li>
+      <li id="src-fix">※3 <a href="https://cloud.google.com/blog/products/identity-security/responding-to-core-php-vulnerabilities-cve-2026-109618-cve-2026-109619" target="_blank" rel="noopener noreferrer">Google Cloud「Responding to core PHP vulnerabilities CVE-2026-109618 and CVE-2026-109619」</a></li>
+      <li id="src-watchtowr">※4 <a href="https://watchtowr.com/intelligence/php-cve-2026-109618-faq/" target="_blank" rel="noopener noreferrer">watchTowr「CVE-2026-109618: Exploited Remote Code Execution in PHP」</a></li>
+    </ol>
+    <p class="disclaimer">本ページは、PHPの開発元やIPAなどの公的機関とは関係のない、個人のエンジニアによるサービス案内です。本サービスは、攻撃を防ぐことを確約・保証するものではありません。掲載の情報は2026年10月30日時点のものです。</p>
+    <p class="copy">© 2026 PHP緊急対応プラン</p>
+  </div>
+</footer>
+
+<div class="mobile-cta">
+  <a class="btn btn-red" href="https://timerex.net/s/a.kusama_002f/bc2dfae4" target="_blank" rel="noopener noreferrer">事前面談を予約する</a>
+</div>
+
+</body>
+</html>
