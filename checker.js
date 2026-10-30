@@ -2,7 +2,7 @@
 "use strict";
 
 const API_ORIGIN = "https://php-api.skslprd.com";
-const RECAPTCHA_SITE_KEY = "__RECAPTCHA_SITE_KEY__";
+const RECAPTCHA_SITE_KEY = "6LdGZgguAAAAAHBukGCQe8tZTRZgTQIcSvHAUPL_";
 const RECAPTCHA_API = "https://www.google.com/recaptcha/api.js?render=explicit&hl=ja&onload=onRecaptchaReady";
 const BOOKING_PREFIX = "https://timerex.net/";
 
