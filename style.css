@@ -477,3 +477,22 @@ code { font-family: "SFMono-Regular", Menlo, Consolas, monospace; background: va
 .checker-banner h3 { font-size: 21px; margin-bottom: 4px; }
 .checker-banner p { color: #D3D8E6; font-size: 15px; }
 .section-result { scroll-margin-top: 72px; }
+
+/* 予約ボタンの表示条件・reCAPTCHA */
+.btn-navy { background: var(--navy); color: #fff; border: 0; font: inherit; font-weight: 800; cursor: pointer; }
+.btn-navy:hover { background: var(--navy-2); }
+.result-cta { display: grid; gap: 12px; justify-items: start; }
+.consult { display: grid; gap: 12px; }
+.recaptcha-box { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 10px; }
+.recaptcha-lead { font-weight: 700; font-size: 15px; }
+.recaptcha-note { font-size: 12px; color: var(--muted); }
+.recaptcha-note a { color: var(--php); }
+#recaptcha { min-height: 78px; }
+.consult-msg { font-weight: 700; font-size: 14px; color: var(--ink); }
+.consult-msg:empty { display: none; }
+.unknown-box { margin-top: 24px; padding: 20px 24px; border-radius: var(--radius); border: 2px dashed var(--php); background: #fff; display: grid; gap: 12px; justify-items: start; }
+.unknown-box b { display: block; font-size: 17px; margin-bottom: 2px; }
+.booking-rule { background: var(--tint); border-radius: 10px; padding: 14px 16px; font-size: 14px; }
+.booking-rule-title { font-weight: 800; margin-bottom: 4px; }
+.booking-rule li { position: relative; padding-left: 18px; }
+.booking-rule li::before { content: "・"; position: absolute; left: 0; }

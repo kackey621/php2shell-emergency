@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src https://php-api.skslprd.com; object-src 'none'; frame-src 'none'; font-src 'none'; media-src 'none'; manifest-src 'none'; worker-src 'none'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'; trusted-types 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self'; img-src 'self'; connect-src https://php-api.skslprd.com; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/; object-src 'none'; font-src 'none'; media-src 'none'; manifest-src 'none'; worker-src 'none'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'; trusted-types checker default goog#html; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="format-detection" content="telephone=no">
 <title>PHP Version Checker｜PHP2Shell（CVE-2026-109618／CVE-2026-109619）の影響を確認</title>
@@ -26,7 +26,7 @@
 <header class="site-header">
   <div class="wrap header-inner">
     <a class="logo" href="./"><span class="logo-mark" aria-hidden="true">!</span>PHP緊急対応プラン</a>
-    <a class="btn btn-sm btn-red" href="https://timerex.net/s/a.kusama_002f/bc2dfae4" target="_blank" rel="noopener noreferrer">事前面談を予約</a>
+    <a class="btn btn-sm btn-red" href="./">プランを見る</a>
   </div>
 </header>
 
@@ -64,7 +64,16 @@
           <dt>Server</dt><dd id="raw-server"></dd>
         </dl>
         <div class="result-cta" id="result-cta" hidden>
-          <a class="btn btn-lg btn-red" href="https://timerex.net/s/a.kusama_002f/bc2dfae4" target="_blank" rel="noopener noreferrer">事前面談を予約する<small>15〜30分・Google Meet</small></a>
+          <a class="btn btn-lg btn-red" id="booking-link" target="_blank" rel="noopener noreferrer" hidden>事前面談を予約する<small>15〜30分・Google Meet</small></a>
+          <div class="consult" id="consult" hidden>
+            <button class="btn btn-lg btn-navy" id="consult-btn" type="button">バージョンがわからないので相談したい</button>
+            <div class="recaptcha-box" id="recaptcha-box" hidden>
+              <p class="recaptcha-lead">ロボットでないことを確認してください。確認後に予約ボタンが表示されます。</p>
+              <div id="recaptcha"></div>
+              <p class="recaptcha-note">この確認には Google reCAPTCHA を使用しており、Googleの<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>と<a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">利用規約</a>が適用されます。</p>
+            </div>
+          </div>
+          <p class="consult-msg" id="consult-msg" role="status"></p>
         </div>
       </div>
     </div>
@@ -87,6 +96,10 @@
         <dt>EC-CUBE 4</dt><dd>管理画面の「設定」→「システム設定」→「システム情報」</dd>
         <dt>サーバーに入れる方</dt><dd>コマンド <code>php -v</code> の結果</dd>
       </dl>
+      <div class="unknown-box">
+        <p><b>番号がわからない・確認できない場合</b>サーバーの状況がわからなくても大丈夫です。事前面談で一緒に確認します。</p>
+        <button class="btn btn-navy" id="unknown-btn" type="button">バージョンがわからないので相談したい</button>
+      </div>
     </div>
   </section>
 
